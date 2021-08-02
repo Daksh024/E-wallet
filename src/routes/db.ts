@@ -10,27 +10,60 @@ const uri :any = process.env.DBConnection;
 
 // const app :Application  = express();
 
-dbRoute.use('/', (req:Request, res:Response, next:NextFunction) => {
+// dbRoute.use('/', (req:Request, res:Response, next:NextFunction) => {      // This middleware is used to check weather there is any query or not.
 
-    if(Object.keys(req.query).length === 0){
-        next();
-    }
-    else{
-        const month = req.query.month;
-        console.log(`Month = ${month}`);
-        next();
-    }  
-});
+//     connect(uri, 
+//         () => console.log("Database Operations!!!!")
+//     );                 // Connecting to Database
+    
+//     if(Object.keys(req.query).length === 0){
+
+//         spendModel.find(req.query)
+//         .then(data => {
+//             console.log(Object.keys(data).length);
+//             res.send(data);
+//         });
+
+//         console.log("No query found!!")
+//         next();
+//     }
+//     else{
+
+//         const obj = ((req.query.month) == '')? {} : req.query;
+
+//         spendModel.find(obj)
+//         .then(
+//             data => res.send(data)
+//         );
+
+//         const month = req.query.month;
+//         console.log(`Month = ${month}`);
+//         // console.log(req.query);
+//         next();
+//     }  
+// });
 
 dbRoute.get('/', (req:Request, res:Response ) => {
+
+    connect(uri, () => console.log("Database Operations!!!!"));                 // Connecting to Database
+
+    spendModel.find({})
+    .then(
+        data => res.send(data)
+    );
 
     // getQuery(req.query);
 
     // connect(uri, () => console.log("DataBase is Connected!!"));
-    res.send("Here we will work on Database Things!!!");
+    // res.send("Here we will work on Database Things!!!");
 });
 
-dbRoute.post('/', (req:Request,res:Response) => {
+dbRoute.post('/',express.urlencoded({ extended: false }), (req:Request,res:Response) => {
+
+    // if(req.)
+
+    console.log(req.body);
+
     // const option:ConnectOptions = { useNewUrlParser: true };
     connect(uri, () => console.log("Database Operations!!!!"));     // Connection Database MoneySpend directly
     connection                                                      // Is to check wheather we are connected or we have some issuse about it.

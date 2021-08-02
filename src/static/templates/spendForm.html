@@ -7,6 +7,13 @@
     <title>Write your Todays Expendature.</title>
 </head>
 <body>
-    LOL no.
+    Find your expense by month
+    <form action="/db" method="POST">
+        <input type="text" name="month" id="month" placeholder="month">
+        <input type="number" name="year" id="year" placeholder="year">
+        <input type="text" name="spendOn" id="spendOn" placeholder="spend on">
+        <input type="number" name="amount" id="amount" placeholder="Amount">
+        <button type="submit">Send</button>
+    </form>
 </body>
 </html>
