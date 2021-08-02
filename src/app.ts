@@ -1,34 +1,25 @@
 import express, { Application, Request, Response, Router } from 'express';
 import path from 'path';
-import mongoose from 'mongoose';
 import { dbRoute } from './routes/db';
-// require('dotenv').config({path:__dirname+'/.env'});
+// import bodyParser from 'body-parser';  
+
 require ('dotenv/config');
+
+// require('dotenv').config({path:__dirname+'/.env'});
 
 const app :Application  = express();
 const PORT :any = process.env.PORT; 
 
+app.use(express.json()); //top parse json types
+
 // set Static folder.
 app.use(express.static(path.join(__dirname,'static/templates')));
 
+// Routing 
 app.use('/db',dbRoute);
 
-//Connect DataBase
-const uri :any = process.env.DBConnection;
-mongoose.connect(uri, () => console.log("DataBase is Connected!!"));
-
-//Middleware
-// app.use('/',( req:Request , res:Response, next:NextFunction ) => {
-//     console.log("Middleware checking for arugments....")
-//     next();
-// });
-
-// Routes
 app.get('/' , ( req:Request, res:Response ) => {
-    res.json({
-        'First' :'Suraj',
-        'Last'  :'Kamble'
-    })
+    res.send("Hello");
 });
 
 app.listen(PORT, () => console.log(`Server on port : ${PORT}`));

@@ -48,3 +48,10 @@ const arr : myList = [];
 
 arr.push(234)
 arr.push("Suraj")
+
+
+//Middleware
+// app.use('/',( req:Request , res:Response, next:NextFunction ) => {
+//     console.log("Middleware checking for arugments....")
+//     next();
+// });
